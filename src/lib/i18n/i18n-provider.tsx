@@ -616,6 +616,14 @@ if (!i18next.isInitialized) {
       lookupLocalStorage: 'i18nextLng',
       caches: ['localStorage', 'cookie'],
     },
+    load: 'languageOnly', // Only load language code (e.g., 'en' instead of 'en-US')
+    ns: ['translation'],
+    defaultNS: 'translation',
+    react: {
+      useSuspense: false, // Disable suspense for better performance
+    },
+    keySeparator: '.',
+    nsSeparator: ':',
   });
 }
 
@@ -624,7 +632,12 @@ export default function I18nProvider({ children }: I18nProviderProps) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    setIsInitialized(true);
+    // Use a short timeout to defer i18n initialization until after initial render
+    const timer = setTimeout(() => {
+      setIsInitialized(true);
+    }, 0);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {

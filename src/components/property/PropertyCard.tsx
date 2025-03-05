@@ -25,7 +25,7 @@ export default function PropertyCard({ property, onClick }: PropertyCardProps) {
     : ['/images/placeholder.jpg', '/images/placeholder.jpg', '/images/placeholder.jpg'];
 
   const sliderSettings = {
-    dots: false, // Changed to false as we're showing custom counter
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -35,6 +35,9 @@ export default function PropertyCard({ property, onClick }: PropertyCardProps) {
     pauseOnHover: true,
     arrows: isHovered,
     beforeChange: (_: any, next: number) => setCurrentSlide(next),
+    lazyLoad: 'ondemand' as const,
+    swipeToSlide: true,
+    adaptiveHeight: false,
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
@@ -63,9 +66,11 @@ export default function PropertyCard({ property, onClick }: PropertyCardProps) {
                 src={image}
                 alt={`${property.name} - Image ${index + 1}`}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover"
                 priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+                quality={index === 0 ? 85 : 75}
               />
             </div>
           ))}

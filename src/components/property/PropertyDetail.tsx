@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,6 +18,21 @@ export default function PropertyDetail({ property, onClose, isOpen }: PropertyDe
   const modalRef = useRef<HTMLDivElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   
+  const sliderSettings = useMemo(() => ({
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    arrows: true,
+    beforeChange: (_: any, next: number) => setCurrentSlide(next),
+    lazyLoad: 'ondemand' as const,
+    swipeToSlide: true,
+  }), []);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -44,20 +59,30 @@ export default function PropertyDetail({ property, onClose, isOpen }: PropertyDe
     };
   }, [isOpen, onClose]);
 
-  if (!property) return null;
+  // Preload images when modal is opened
+  useEffect(() => {
+    if (isOpen && property && property.images.length > 0) {
+      // Simpler approach to preload images
+      property.images.forEach((src) => {
+        const prefetchLink = document.createElement('link');
+        prefetchLink.rel = 'prefetch';
+        prefetchLink.as = 'image';
+        prefetchLink.href = src;
+        document.head.appendChild(prefetchLink);
+        
+        // Clean up prefetch links when modal closes
+        return () => {
+          try {
+            document.head.removeChild(prefetchLink);
+          } catch (e) {
+            // Ignore errors if element was already removed
+          }
+        };
+      });
+    }
+  }, [isOpen, property]);
 
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-    arrows: true,
-    beforeChange: (_: any, next: number) => setCurrentSlide(next),
-  };
+  if (!property) return null;
 
   // For demo purposes, use placeholder images if property images are not available
   const images = property.images.length > 0
@@ -109,9 +134,11 @@ export default function PropertyDetail({ property, onClose, isOpen }: PropertyDe
                         src={image}
                         alt={`${property.name} - Image ${index + 1}`}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 70vw"
                         className="object-cover"
                         priority={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        quality={index === 0 ? 90 : 80}
                       />
                     </div>
                   ))}

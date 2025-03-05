@@ -29,15 +29,15 @@ export default function LanguageSwitcher() {
     <div className="relative z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-2 rounded-full hover:bg-white/20 transition-colors"
+        className="flex items-center space-x-2 bg-white backdrop-blur-md px-3 py-2 rounded-full hover:bg-gray-100 transition-colors"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
         <span className="text-xl">{currentLanguage.flag}</span>
-        <span className="font-medium text-white">{currentLanguage.code.toUpperCase()}</span>
+        <span className="font-medium text-gray-800">{currentLanguage.code.toUpperCase()}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className={`h-4 w-4 text-white transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 text-gray-800 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

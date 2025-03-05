@@ -1,25 +1,39 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 
+// Memoize the header links to prevent unnecessary re-renders
+const HeaderLink = memo(({ href, label }: { href: string; label: string }) => (
+  <Link
+    href={href}
+    className="font-medium transition-colors text-gray-800 hover:text-blue-600"
+  >
+    {label}
+  </Link>
+));
+
+HeaderLink.displayName = 'HeaderLink';
+
 export default function Header() {
   const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(true);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  // Optimize scroll handler with useCallback
+  const handleScroll = useCallback(() => {
+    setIsScrolled(true);
   }, []);
+
+  useEffect(() => {
+    // Use passive event listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   return (
     <header
@@ -39,24 +53,9 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link
-            href="#properties"
-            className="font-medium transition-colors text-gray-800 hover:text-blue-600"
-          >
-            {t('navigation.properties')}
-          </Link>
-          <Link
-            href="#location"
-            className="font-medium transition-colors text-gray-800 hover:text-blue-600"
-          >
-            {t('navigation.location')}
-          </Link>
-          <Link
-            href="#community"
-            className="font-medium transition-colors text-gray-800 hover:text-blue-600"
-          >
-            {t('navigation.community')}
-          </Link>
+          <HeaderLink href="#properties" label={t('navigation.properties')} />
+          <HeaderLink href="#location" label={t('navigation.location')} />
+          <HeaderLink href="#community" label={t('navigation.community')} />
           <LanguageSwitcher />
         </nav>
 
@@ -105,27 +104,9 @@ export default function Header() {
           className="md:hidden bg-white shadow-lg"
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <Link
-              href="#properties"
-              className="font-medium text-gray-800 hover:text-blue-600 py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {t('navigation.properties')}
-            </Link>
-            <Link
-              href="#location"
-              className="font-medium text-gray-800 hover:text-blue-600 py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {t('navigation.location')}
-            </Link>
-            <Link
-              href="#community"
-              className="font-medium text-gray-800 hover:text-blue-600 py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {t('navigation.community')}
-            </Link>
+            <HeaderLink href="#properties" label={t('navigation.properties')} />
+            <HeaderLink href="#location" label={t('navigation.location')} />
+            <HeaderLink href="#community" label={t('navigation.community')} />
           </div>
         </motion.div>
       )}

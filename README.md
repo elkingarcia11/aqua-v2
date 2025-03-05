@@ -1,4 +1,4 @@
-# AQUA v2
+# AQUA
 
 A modern, responsive landing page for AQUA, featuring 6 beachfront properties at El Pueblito Beach, Puerto Plata, Dominican Republic.
 
