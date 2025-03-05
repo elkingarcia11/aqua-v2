@@ -1,0 +1,65 @@
+{
+  "navigation": {
+    "properties": "Properties",
+    "location": "Location",
+    "community": "Community",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Beachfront Luxury at AQUA",
+    "subtitle": "Experience the perfect beach getaway at El Pueblito Beach with our stunning oceanfront apartments",
+    "exploreProperties": "Explore Properties",
+    "discoverCommunity": "Discover Community",
+    "scrollDown": "Scroll Down"
+  },
+  "properties": {
+    "title": "Our Beachfront Apartments",
+    "subtitle": "Discover our collection of beautiful apartments, each offering a unique experience",
+    "noResults": "No properties match your filters",
+    "tryDifferentFilters": "Please try different filter options"
+  },
+  "property": {
+    "beachView": "Beach View",
+    "floor": "Floor",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "capacity": "Sleeps",
+    "bookOnAirbnb": "Book on Airbnb",
+    "description": "Description",
+    "location": "Location",
+    "loadingMap": "Loading map..."
+  },
+  "filter": {
+    "title": "Filter Properties",
+    "beachView": "Beach View",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "capacity": "Capacity",
+    "yes": "Yes",
+    "no": "No",
+    "resetAll": "Reset All Filters",
+    "showing": "Showing",
+    "of": "of",
+    "collapse": "Collapse filters",
+    "expand": "Expand filters"
+  },
+  "community": {
+    "title": "El Pueblito Beach Community",
+    "amenities": "Amenities",
+    "nearbyAttractions": "Nearby Attractions",
+    "away": "away",
+    "location": "Location",
+    "locationDescription": "AQUA is located in El Pueblito, Puerto Plata, Dominican Republic, offering stunning beachfront views and easy access to local attractions.",
+    "parkingInfo": "Parking Information",
+    "parkingDescription": "There are two public parking lots located about 270 meters away from the property.",
+    "getDirections": "Get Directions",
+    "loadingMap": "Loading map..."
+  },
+  "footer": {
+    "description": "AQUA offers luxury beachfront accommodations in Puerto Plata, providing the perfect setting for your dream vacation.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "rights": "All Rights Reserved.",
+    "instagram": "Instagram"
+  }
+} 
