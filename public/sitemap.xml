@@ -5,7 +5,7 @@
                 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Main page -->
   <url>
-    <loc>https://aqua-apartments.com/</loc>
+    <loc>https://aquapuertoplata.com/</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -13,43 +13,43 @@
   
   <!-- Language versions -->
   <url>
-    <loc>https://aqua-apartments.com/en-US</loc>
+    <loc>https://aquapuertoplata.com/en-US</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aqua-apartments.com/es-ES</loc>
+    <loc>https://aquapuertoplata.com/es-ES</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aqua-apartments.com/fr-FR</loc>
+    <loc>https://aquapuertoplata.com/fr-FR</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aqua-apartments.com/ru-RU</loc>
+    <loc>https://aquapuertoplata.com/ru-RU</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aqua-apartments.com/nl-NL</loc>
+    <loc>https://aquapuertoplata.com/nl-NL</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aqua-apartments.com/de-DE</loc>
+    <loc>https://aquapuertoplata.com/de-DE</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aqua-apartments.com/it-IT</loc>
+    <loc>https://aquapuertoplata.com/it-IT</loc>
     <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

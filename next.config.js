@@ -18,7 +18,6 @@ const nextConfig = {
   poweredByHeader: false,
   // Remove Next.js branding
   reactStrictMode: true,
-  swcMinify: true,
 };
 
 module.exports = nextConfig; 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "../lib/i18n/i18n-provider";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -106,6 +107,52 @@ export default function RootLayout({
             }
           `}
         </style>
+        <Script
+          id="schema-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LodgingBusiness",
+              "name": "AQUA Beachfront Luxury Apartments",
+              "description": "Discover luxury beachfront apartments at AQUA, El Pueblito Beach, Puerto Plata. Enjoy oceanfront views, modern amenities, and direct beach access.",
+              "url": "https://aquapuertoplata.com",
+              "telephone": "+1-809-123-4567",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "El Pueblito Beach",
+                "addressLocality": "Puerto Plata",
+                "addressRegion": "Puerto Plata",
+                "postalCode": "57000",
+                "addressCountry": "DO"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "19.7934",
+                "longitude": "-70.6884"
+              },
+              "priceRange": "$$$",
+              "image": "https://aquapuertoplata.com/images/og-image.jpg",
+              "amenityFeature": [
+                {
+                  "@type": "LocationFeatureSpecification",
+                  "name": "Beachfront Access",
+                  "value": true
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  "name": "Ocean View",
+                  "value": true
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  "name": "Free WiFi",
+                  "value": true
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body className={`${inter.variable} font-sans`}>
         <I18nProvider>

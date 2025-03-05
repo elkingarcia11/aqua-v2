@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://aqua-apartments.com/sitemap.xml 
+Sitemap: https://aquapuertoplata.com/sitemap.xml 
