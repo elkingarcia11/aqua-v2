@@ -52,7 +52,14 @@ const resources = {
         "showing": "Showing",
         "of": "of",
         "collapse": "Collapse filters",
-        "expand": "Expand filters"
+        "expand": "Expand filters",
+        "presets": {
+          "all": "All Properties",
+          "beachView": "Beach View",
+          "family": "Family Friendly",
+          "couple": "Perfect for Couples",
+          "custom": "Custom Filter"
+        }
       },
       "community": {
         "title": "El Pueblito Beach Community",
@@ -135,7 +142,14 @@ const resources = {
         "showing": "Mostrando",
         "of": "de",
         "collapse": "Colapsar filtros",
-        "expand": "Expandir filtros"
+        "expand": "Expandir filtros",
+        "presets": {
+          "all": "Todas las Propiedades",
+          "beachView": "Vista al Mar",
+          "family": "Para Familias",
+          "couple": "Perfecto para Parejas",
+          "custom": "Filtro Personalizado"
+        }
       },
       "community": {
         "title": "Comunidad de El Pueblito Beach",
@@ -218,7 +232,14 @@ const resources = {
         "showing": "Affichage",
         "of": "de",
         "collapse": "Réduire les filtres",
-        "expand": "Développer les filtres"
+        "expand": "Développer les filtres",
+        "presets": {
+          "all": "Toutes les Propriétés",
+          "beachView": "Vue sur la Plage",
+          "family": "Pour les Familles",
+          "couple": "Parfait pour les Couples",
+          "custom": "Filtre Personnalisé"
+        }
       },
       "community": {
         "title": "Communauté de la Plage El Pueblito",
@@ -301,7 +322,14 @@ const resources = {
         "showing": "Показано",
         "of": "из",
         "collapse": "Свернуть фильтры",
-        "expand": "Развернуть фильтры"
+        "expand": "Развернуть фильтры",
+        "presets": {
+          "all": "Все Объекты",
+          "beachView": "С Видом на Пляж",
+          "family": "Для Семей",
+          "couple": "Идеально для Пар",
+          "custom": "Пользовательский Фильтр"
+        }
       },
       "community": {
         "title": "Сообщество Пляжа Эль-Пуэблито",
@@ -384,7 +412,14 @@ const resources = {
         "showing": "Tonen",
         "of": "van",
         "collapse": "Filters inklappen",
-        "expand": "Filters uitklappen"
+        "expand": "Filters uitklappen",
+        "presets": {
+          "all": "Alle Eigenschappen",
+          "beachView": "Uitzicht op Strand",
+          "family": "Gezinsvriendelijk",
+          "couple": "Perfect voor Stellen",
+          "custom": "Aangepast Filter"
+        }
       },
       "community": {
         "title": "El Pueblito Beach Gemeenschap",
@@ -467,7 +502,14 @@ const resources = {
         "showing": "Anzeigen",
         "of": "von",
         "collapse": "Filter einklappen",
-        "expand": "Filter ausklappen"
+        "expand": "Filter ausklappen",
+        "presets": {
+          "all": "Alle Immobilien",
+          "beachView": "Mit Meerblick",
+          "family": "Familienfreundlich",
+          "couple": "Perfekt für Paare",
+          "custom": "Benutzerdefinierter Filter"
+        }
       },
       "community": {
         "title": "El Pueblito Beach Gemeinschaft",
@@ -550,7 +592,14 @@ const resources = {
         "showing": "Mostrando",
         "of": "di",
         "collapse": "Comprimi filtri",
-        "expand": "Espandi filtri"
+        "expand": "Espandi filtri",
+        "presets": {
+          "all": "Tutte le Proprietà",
+          "beachView": "Vista Mare",
+          "family": "Per Famiglie",
+          "couple": "Perfetto per Coppie",
+          "custom": "Filtro Personalizzato"
+        }
       },
       "community": {
         "title": "Comunità di El Pueblito Beach",
