@@ -39,7 +39,9 @@ export default function CommunitySection() {
                   className="flex items-center p-4 bg-white rounded-lg shadow-md"
                 >
                   <span className="material-icons text-blue-600 mr-3">{amenity.icon}</span>
-                  <span className="font-medium text-gray-800">{amenity.name}</span>
+                  <span className="font-medium text-gray-800">
+                    {amenity.name[i18n.language as keyof typeof amenity.name] || amenity.name.en}
+                  </span>
                 </motion.div>
               ))}
             </div>

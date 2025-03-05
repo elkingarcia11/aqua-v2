@@ -251,10 +251,6 @@ export default function PropertyDetail({ property, onClose, isOpen }: PropertyDe
                       <span className="text-gray-700">{t('commodities.tv')}</span>
                     </div>
                     <div className="flex items-center">
-                      <span className="material-icons text-blue-600 mr-2">local_laundry_service</span>
-                      <span className="text-gray-700">{t('commodities.washer')}</span>
-                    </div>
-                    <div className="flex items-center">
                       <span className="material-icons text-blue-600 mr-2">local_parking</span>
                       <span className="text-gray-700">{t('commodities.publicParking')}</span>
                     </div>

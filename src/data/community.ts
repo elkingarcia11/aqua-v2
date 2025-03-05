@@ -9,7 +9,15 @@ export interface CommunityInfo {
     it: string;
   };
   amenities: {
-    name: string;
+    name: {
+      en: string;
+      es: string;
+      fr: string;
+      ru: string;
+      nl: string;
+      de: string;
+      it: string;
+    };
     icon: string;
   }[];
   nearbyAttractions: {
@@ -39,20 +47,64 @@ export const communityInfo: CommunityInfo = {
   },
   amenities: [
     {
-      name: 'WiFi',
+      name: {
+        en: 'WiFi',
+        es: 'WiFi',
+        fr: 'WiFi',
+        ru: 'WiFi',
+        nl: 'WiFi',
+        de: 'WLAN',
+        it: 'WiFi',
+      },
       icon: 'wifi',
     },
     {
-      name: 'Beach Access',
+      name: {
+        en: 'Beach Access',
+        es: 'Acceso a la Playa',
+        fr: 'Accès à la Plage',
+        ru: 'Доступ к Пляжу',
+        nl: 'Toegang tot Strand',
+        de: 'Strandzugang',
+        it: 'Accesso alla Spiaggia',
+      },
       icon: 'beach_access',
     },
     {
-      name: 'Rooftop Access',
+      name: {
+        en: 'Rooftop Access',
+        es: 'Acceso a la Azotea',
+        fr: 'Accès au Toit-Terrasse',
+        ru: 'Доступ на Крышу',
+        nl: 'Toegang tot Dakterras',
+        de: 'Dachterrassenzugang',
+        it: 'Accesso al Tetto',
+      },
       icon: 'deck',
     },
     {
-      name: 'Public Parking',
+      name: {
+        en: 'Public Parking',
+        es: 'Estacionamiento Público',
+        fr: 'Stationnement Public',
+        ru: 'Общественная Парковка',
+        nl: 'Openbare Parkeerplaats',
+        de: 'Öffentliche Parkplätze',
+        it: 'Parcheggio Pubblico',
+      },
       icon: 'local_parking',
+    },
+    {
+      name: {
+        en: 'Washer',
+        es: 'Lavadora',
+        fr: 'Machine à Laver',
+        ru: 'Стиральная Машина',
+        nl: 'Wasmachine',
+        de: 'Waschmaschine',
+        it: 'Lavatrice',
+      },
+      icon: 'local_laundry_service',
     },
   ],
   nearbyAttractions: [
