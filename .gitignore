@@ -34,8 +34,13 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+# Only commit example env file
 !.env.example
 
 # vercel
@@ -50,3 +55,28 @@ next-env.d.ts
 
 # cache
 .cache/
+
+# Google Cloud specific
+.gcloudignore
+*.log
+*.tmp
+
+# Deployment artifacts
+.firebase/
+.firebaserc
+firebase-debug.log
+firebase.json
+.github/workflows/
+
+# Local SSL certificates
+*.crt
+*.key
+*.pem
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+
+# Local deployment scripts with credentials
+deploy-local.sh

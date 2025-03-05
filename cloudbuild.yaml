@@ -1,0 +1,35 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/aqua-app', '.']
+
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/aqua-app']
+
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'aqua'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/aqua-app'
+  - '--region'
+  - 'us-east1'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'
+  - '--set-env-vars'
+  - 'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${_MAPS_API_KEY},NEXT_PUBLIC_ENV=production,NEXT_PUBLIC_SITE_URL=${_SITE_URL}'
+
+images:
+- 'gcr.io/$PROJECT_ID/aqua-app'
+
+timeout: 1800s
+
+# Substitution variables are defined in the Cloud Build trigger
+substitutions:
+  _MAPS_API_KEY: 'default-placeholder-replace-in-trigger'
+  _SITE_URL: 'https://aquapuertoplata.com' 

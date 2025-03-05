@@ -21,6 +21,7 @@ A modern, responsive landing page for AQUA, featuring 6 beachfront properties at
 - **Maps**: Google Maps API
 - **Internationalization**: i18next with custom provider
 - **Image Slider**: React Slick
+- **Deployment**: Google Cloud Run
 
 ## Getting Started
 
@@ -44,11 +45,12 @@ A modern, responsive landing page for AQUA, featuring 6 beachfront properties at
    yarn install
    ```
 
-3. Create a `.env.local` file in the root directory with your Google Maps API key:
+3. Set up environment variables using the provided script:
+   ```bash
+   chmod +x setup-env.sh
+   ./setup-env.sh
    ```
-   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
-   NEXT_PUBLIC_ENV=development
-   ```
+   This script will prompt you for your Google Maps API key and other necessary information, and create the required `.env.local` and `.env.production` files.
 
 4. Start the development server:
    ```bash
@@ -102,15 +104,44 @@ Images should follow a consistent naming convention (e.g., `1.jpg`, `2.jpg`, etc
 
 ## Deployment
 
-This project can be easily deployed to Vercel:
+### Google Cloud Run (Recommended)
 
-```bash
-npm run build
-# or
-yarn build
-```
+This project is configured for deployment to Google Cloud Run. Follow these steps:
 
-For production deployment, make sure to set the environment variables in your hosting platform.
+1. Make sure you have the Google Cloud SDK installed:
+   ```bash
+   # For macOS
+   brew install google-cloud-sdk
+   
+   # For other platforms, visit:
+   # https://cloud.google.com/sdk/docs/install
+   ```
+
+2. Set up environment variables for deployment:
+   ```bash
+   export GCP_PROJECT_ID=your-project-id
+   export MAPS_API_KEY=your-google-maps-api-key
+   ```
+
+3. Run the deployment script:
+   ```bash
+   chmod +x deploy-gcloud.sh
+   ./deploy-gcloud.sh
+   ```
+
+4. For continuous deployment, set up a Cloud Build trigger with the following substitution variables:
+   - `_MAPS_API_KEY`: Your Google Maps API key
+   - `_SITE_URL`: Your site URL (e.g., https://aquapuertoplata.com)
+
+For detailed deployment instructions, refer to the `AQUA-DEPLOYMENT-GUIDE.md` file.
+
+### Security Best Practices
+
+- **Never commit sensitive information** to version control, including API keys and credentials
+- Use environment variables for all sensitive information
+- The `.env.local` and `.env.production` files are excluded from version control
+- Use the provided `setup-env.sh` script to set up your environment variables
+- For deployment, use environment variables or Cloud Build substitution variables
 
 ## License
 
