@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "../lib/i18n/i18n-provider";
 import Script from "next/script";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -74,7 +73,7 @@ export const metadata: Metadata = {
       { url: '/favicon.ico', type: 'image/x-icon' }
     ],
     apple: [
-      { url: '/header-logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '180x180', type: 'image/png' },
     ],
   },
   other: {
@@ -92,7 +91,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/header-logo.png" sizes="180x180" />
+        <link rel="apple-touch-icon" href="/favicon.ico" sizes="180x180" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -152,7 +151,7 @@ export default function RootLayout({
                 "longitude": "-70.6884"
               },
               "priceRange": "$$$",
-              "image": "https://aquapuertoplata.com/header-logo.png",
+              "image": "https://aquapuertoplata.com/favicon.ico",
               "amenityFeature": [
                 {
                   "@type": "LocationFeatureSpecification",

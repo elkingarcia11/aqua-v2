@@ -12,8 +12,9 @@ export default function CommunitySection() {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
   });
 
-  const communityLocation = { lat: 19.7739099, lng: -70.6520804 };
-
+  // Updated to use the exact coordinates from the provided URL
+  const communityLocation = { lat: 19.773993872098327, lng: -70.65216997523102 };
+  
   return (
     <section id="community" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -87,14 +88,19 @@ export default function CommunitySection() {
               <GoogleMap
                 mapContainerStyle={{ width: '100%', height: '100%' }}
                 center={communityLocation}
-                zoom={18}
+                zoom={17}
                 options={{
-                  disableDefaultUI: true,
+                  disableDefaultUI: false,
                   zoomControl: true,
                   scrollwheel: false,
+                  mapTypeControl: true,
+                  fullscreenControl: true,
                 }}
               >
-                <MarkerF position={communityLocation} />
+                <MarkerF 
+                  position={communityLocation} 
+                  title="AQUA EL PUEBLITO PUERTO PLATA RD"
+                />
               </GoogleMap>
             ) : (
               <div className="h-full w-full bg-gray-200 flex items-center justify-center">
@@ -109,7 +115,7 @@ export default function CommunitySection() {
                 <p className="text-gray-600">{t('community.parkingDescription')}</p>
               </div>
               <a
-                href="https://www.google.com/maps/place/AQUA/@19.7739099,-70.6546553,16z/data=!3m1!4b1!4m6!3m5!1s0x8eb1ef2898f7c08b:0x3b40ce6ce0f444a!8m2!3d19.7739099!4d-70.6520804!16s%2Fg%2F11symfwdgb?entry=ttu&g_ep=EgoyMDI1MDMwMy4wIKXMDSoASAFQAw%3D%3D"
+                href="https://www.google.com/maps/place/AQUA+EL+PUEBLITO+PUERTO+PLATA+RD/@19.773993872098327,-70.65216997523102,17z"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-center transition-colors inline-flex items-center"

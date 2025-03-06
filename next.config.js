@@ -22,8 +22,6 @@ const nextConfig = {
   // Production optimizations
   compress: true,
   productionBrowserSourceMaps: false,
-  // Enable standalone output for Cloud Run deployment
-  output: 'standalone',
   // Configure domain for production
   async headers() {
     return [

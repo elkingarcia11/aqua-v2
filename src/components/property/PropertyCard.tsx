@@ -34,7 +34,7 @@ export default function PropertyCard({ property, onClick }: PropertyCardProps) {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: isHovered,
-    beforeChange: (_: any, next: number) => setCurrentSlide(next),
+    beforeChange: (_: number, next: number) => setCurrentSlide(next),
     lazyLoad: 'ondemand' as const,
     swipeToSlide: true,
     adaptiveHeight: false,

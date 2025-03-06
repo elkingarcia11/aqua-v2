@@ -8,7 +8,7 @@ A modern, responsive landing page for AQUA, featuring 6 beachfront properties at
 - **Multilingual Support**: Full localization for English, Spanish, French, Russian, Dutch, German, and Italian
 - **Smart Filtering**: User-friendly filtering system based on guest capacity, view type, bathrooms, and bedrooms
 - **Direct Booking**: "Book on Airbnb" buttons for each property with direct links
-- **Location Details**: Clear directions and location information with embedded Google Maps
+- **Location Details**: Clear directions and location information with integrated Google Maps
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewing
 - **Property Details**: Comprehensive information including amenities, commodities, and descriptions
 - **Community Section**: Information about the local area and attractions
@@ -18,10 +18,10 @@ A modern, responsive landing page for AQUA, featuring 6 beachfront properties at
 - **Framework**: Next.js 15 with App Router
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
-- **Maps**: Google Maps API
+- **Maps**: Google Maps JavaScript API
 - **Internationalization**: i18next with custom provider
 - **Image Slider**: React Slick
-- **Deployment**: Google Cloud Run
+- **Deployment**: Vercel
 
 ## Getting Started
 
@@ -45,12 +45,10 @@ A modern, responsive landing page for AQUA, featuring 6 beachfront properties at
    yarn install
    ```
 
-3. Set up environment variables using the provided script:
-   ```bash
-   chmod +x setup-env.sh
-   ./setup-env.sh
+3. Create a `.env.local` file with your Google Maps API key:
    ```
-   This script will prompt you for your Google Maps API key and other necessary information, and create the required `.env` file.
+   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+   ```
 
 4. Start the development server:
    ```bash
@@ -104,77 +102,60 @@ Images should follow a consistent naming convention (e.g., `1.jpg`, `2.jpg`, etc
 
 ## Deployment
 
-### Google Cloud Run
+### Vercel Deployment
 
-This project is configured for deployment to Google Cloud Run using Container Registry. Follow these steps:
+This project is configured for deployment to Vercel. Follow these steps:
 
-1. Make sure you have the Google Cloud SDK installed:
+1. Install the Vercel CLI:
    ```bash
-   # For macOS
-   brew install google-cloud-sdk
+   npm install -g vercel
+   ```
+
+2. Log in to Vercel:
+   ```bash
+   vercel login
+   ```
+
+3. Deploy to Vercel:
+   ```bash
+   # For preview deployment
+   vercel
    
-   # For other platforms, visit:
-   # https://cloud.google.com/sdk/docs/install
+   # For production deployment
+   vercel --prod
    ```
 
-2. Authenticate with Google Cloud:
+Alternatively, you can use the provided deployment script:
    ```bash
-   gcloud auth login
+   chmod +x deploy-vercel.sh
+   ./deploy-vercel.sh
    ```
 
-3. Set up your environment variables:
-   ```bash
-   # Copy the example environment file
-   cp .env.example .env
-   
-   # Edit the .env file with your actual values
-   nano .env
-   ```
+### Automatic Deployments
 
-4. Run the deployment script:
-   ```bash
-   chmod +x deploy-nextjs.sh
-   ./deploy-nextjs.sh
-   ```
+For automatic deployments, connect your GitHub repository to Vercel:
 
-The script will:
-- Load environment variables from your .env file
-- Build your Next.js application
-- Create a Docker image
-- Push the image to Google Container Registry
-- Deploy the image to Cloud Run
-- Output the URL where your application is accessible
+1. Go to the [Vercel Dashboard](https://vercel.com/dashboard)
+2. Click "New Project"
+3. Import your GitHub repository
+4. Configure your project settings
+5. Deploy
 
-### Key Deployment Files
-
-- `Dockerfile`: Multi-stage build for the Next.js application
-- `deploy-nextjs.sh`: Main deployment script
-- `.dockerignore`: Excludes unnecessary files from the Docker image
-- `cloudbuild.yaml`: Configuration for Google Cloud Build continuous deployment
-- `CLOUD-BUILD-SETUP.md`: Instructions for setting up Cloud Build
-- `AQUA-DEPLOYMENT-GUIDE.md`: Comprehensive deployment guide
-- `GCLOUD-CDN-SETUP.md`: Instructions for setting up Cloud CDN
+With this setup, Vercel will automatically deploy:
+- Production deployments when you push to the main branch
+- Preview deployments when you create pull requests
 
 ### Environment Variables
 
-For deployment, the following environment variables are set:
-- `NODE_ENV=production`: Sets the Node.js environment to production
-- `HOSTNAME="0.0.0.0"`: Ensures the server listens on all network interfaces
-- `NEXT_TELEMETRY_DISABLED=1`: Disables Next.js telemetry
-
-#### Google Cloud Deployment Variables
-The following environment variables are used for Google Cloud deployment:
-- `GCLOUD_PROJECT_ID`: Your Google Cloud project ID
-- `GCLOUD_REGION`: The Google Cloud region to deploy to (e.g., northamerica-northeast1)
-- `GCLOUD_SERVICE_NAME`: The name of your Cloud Run service
-- `GCLOUD_IMAGE_NAME`: The name for your Docker image
+For deployment, the following environment variables should be set in the Vercel dashboard:
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`: Your Google Maps API key
+- `NEXT_PUBLIC_SITE_URL`: The URL of your deployed site
 
 ### Security Best Practices
 
 - **Never commit sensitive information** to version control, including API keys and credentials
 - Use environment variables for all sensitive information
 - The `.env` file is excluded from version control
-- Use the provided `setup-env.sh` script to set up your environment variables
 
 ## License
 

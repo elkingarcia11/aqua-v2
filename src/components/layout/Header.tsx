@@ -21,12 +21,11 @@ HeaderLink.displayName = 'HeaderLink';
 
 export default function Header() {
   const { t } = useTranslation();
-  const [isScrolled, setIsScrolled] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Optimize scroll handler with useCallback
   const handleScroll = useCallback(() => {
-    setIsScrolled(true);
+    // No need to set isScrolled since we're not using it
   }, []);
 
   useEffect(() => {

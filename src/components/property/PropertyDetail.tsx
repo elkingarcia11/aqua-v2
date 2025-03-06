@@ -28,7 +28,7 @@ export default function PropertyDetail({ property, onClose, isOpen }: PropertyDe
     autoplaySpeed: 4000,
     pauseOnHover: true,
     arrows: true,
-    beforeChange: (_: any, next: number) => setCurrentSlide(next),
+    beforeChange: (_: number, next: number) => setCurrentSlide(next),
     lazyLoad: 'ondemand' as const,
     swipeToSlide: true,
   }), []);
@@ -74,7 +74,7 @@ export default function PropertyDetail({ property, onClose, isOpen }: PropertyDe
         return () => {
           try {
             document.head.removeChild(prefetchLink);
-          } catch (e) {
+          } catch {
             // Ignore errors if element was already removed
           }
         };

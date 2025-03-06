@@ -11,7 +11,7 @@
     "deploy:gcloud": "gcloud builds submit --config cloudbuild.yaml"
   },
   "dependencies": {
-    "@react-google-maps/api": "^2.20.6",
+    "@react-google-maps/api": "^2.19.2",
     "framer-motion": "^12.4.10",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.4",

@@ -26,7 +26,7 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="https://www.google.com/maps/place/AQUA/@19.7739099,-70.6546553,16z/data=!3m1!4b1!4m6!3m5!1s0x8eb1ef2898f7c08b:0x3b40ce6ce0f444a!8m2!3d19.7739099!4d-70.6520804!16s%2Fg%2F11symfwdgb?entry=ttu"
+                  href="https://www.google.com/maps/place/AQUA+EL+PUEBLITO+PUERTO+PLATA+RD/@19.773993872098327,-70.65216997523102,17z"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"

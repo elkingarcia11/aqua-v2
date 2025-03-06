@@ -36,11 +36,13 @@ yarn-error.log*
 
 # env files
 .env
+.env.production
 # Only commit example env file
 !.env.example
 
 # vercel
 .vercel
+.vercel/
 
 # typescript
 *.tsbuildinfo
