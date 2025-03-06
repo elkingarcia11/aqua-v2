@@ -298,7 +298,7 @@ export default function PropertyDetail({ property, onClose, isOpen }: PropertyDe
                       href={property.airbnbLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-4 rounded-lg transition-colors text-center"
+                      className="block w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded-lg transition-colors text-center"
                     >
                       {t('property.bookOnAirbnb')}
                     </a>

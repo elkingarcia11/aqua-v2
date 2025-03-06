@@ -189,7 +189,7 @@ export default function PropertyCard({ property, onClick }: PropertyCardProps) {
             href={property.airbnbLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="book-button block w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center"
+            className="book-button block w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center"
             onClick={(e) => e.stopPropagation()}
           >
             {t('property.bookOnAirbnb')}

@@ -50,7 +50,7 @@ A modern, responsive landing page for AQUA, featuring 6 beachfront properties at
    chmod +x setup-env.sh
    ./setup-env.sh
    ```
-   This script will prompt you for your Google Maps API key and other necessary information, and create the required `.env.local` and `.env.production` files.
+   This script will prompt you for your Google Maps API key and other necessary information, and create the required `.env` file.
 
 4. Start the development server:
    ```bash
@@ -104,9 +104,9 @@ Images should follow a consistent naming convention (e.g., `1.jpg`, `2.jpg`, etc
 
 ## Deployment
 
-### Google Cloud Run (Recommended)
+### Google Cloud Run
 
-This project is configured for deployment to Google Cloud Run. Follow these steps:
+This project is configured for deployment to Google Cloud Run using Container Registry. Follow these steps:
 
 1. Make sure you have the Google Cloud SDK installed:
    ```bash
@@ -117,31 +117,64 @@ This project is configured for deployment to Google Cloud Run. Follow these step
    # https://cloud.google.com/sdk/docs/install
    ```
 
-2. Set up environment variables for deployment:
+2. Authenticate with Google Cloud:
    ```bash
-   export GCP_PROJECT_ID=your-project-id
-   export MAPS_API_KEY=your-google-maps-api-key
+   gcloud auth login
    ```
 
-3. Run the deployment script:
+3. Set up your environment variables:
    ```bash
-   chmod +x deploy-gcloud.sh
-   ./deploy-gcloud.sh
+   # Copy the example environment file
+   cp .env.example .env
+   
+   # Edit the .env file with your actual values
+   nano .env
    ```
 
-4. For continuous deployment, set up a Cloud Build trigger with the following substitution variables:
-   - `_MAPS_API_KEY`: Your Google Maps API key
-   - `_SITE_URL`: Your site URL (e.g., https://aquapuertoplata.com)
+4. Run the deployment script:
+   ```bash
+   chmod +x deploy-nextjs.sh
+   ./deploy-nextjs.sh
+   ```
 
-For detailed deployment instructions, refer to the `AQUA-DEPLOYMENT-GUIDE.md` file.
+The script will:
+- Load environment variables from your .env file
+- Build your Next.js application
+- Create a Docker image
+- Push the image to Google Container Registry
+- Deploy the image to Cloud Run
+- Output the URL where your application is accessible
+
+### Key Deployment Files
+
+- `Dockerfile`: Multi-stage build for the Next.js application
+- `deploy-nextjs.sh`: Main deployment script
+- `.dockerignore`: Excludes unnecessary files from the Docker image
+- `cloudbuild.yaml`: Configuration for Google Cloud Build continuous deployment
+- `CLOUD-BUILD-SETUP.md`: Instructions for setting up Cloud Build
+- `AQUA-DEPLOYMENT-GUIDE.md`: Comprehensive deployment guide
+- `GCLOUD-CDN-SETUP.md`: Instructions for setting up Cloud CDN
+
+### Environment Variables
+
+For deployment, the following environment variables are set:
+- `NODE_ENV=production`: Sets the Node.js environment to production
+- `HOSTNAME="0.0.0.0"`: Ensures the server listens on all network interfaces
+- `NEXT_TELEMETRY_DISABLED=1`: Disables Next.js telemetry
+
+#### Google Cloud Deployment Variables
+The following environment variables are used for Google Cloud deployment:
+- `GCLOUD_PROJECT_ID`: Your Google Cloud project ID
+- `GCLOUD_REGION`: The Google Cloud region to deploy to (e.g., northamerica-northeast1)
+- `GCLOUD_SERVICE_NAME`: The name of your Cloud Run service
+- `GCLOUD_IMAGE_NAME`: The name for your Docker image
 
 ### Security Best Practices
 
 - **Never commit sensitive information** to version control, including API keys and credentials
 - Use environment variables for all sensitive information
-- The `.env.local` and `.env.production` files are excluded from version control
+- The `.env` file is excluded from version control
 - Use the provided `setup-env.sh` script to set up your environment variables
-- For deployment, use environment variables or Cloud Build substitution variables
 
 ## License
 

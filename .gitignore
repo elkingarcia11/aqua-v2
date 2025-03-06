@@ -36,10 +36,6 @@ yarn-error.log*
 
 # env files
 .env
-.env.local
-.env.development
-.env.test
-.env.production
 # Only commit example env file
 !.env.example
 
@@ -60,6 +56,7 @@ next-env.d.ts
 .gcloudignore
 *.log
 *.tmp
+temp_build/
 
 # Deployment artifacts
 .firebase/
@@ -80,3 +77,6 @@ firebase.json
 
 # Local deployment scripts with credentials
 deploy-local.sh
+
+# Backup files
+*.backup

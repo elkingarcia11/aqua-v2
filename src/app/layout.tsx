@@ -3,11 +3,12 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "../lib/i18n/i18n-provider";
 import Script from "next/script";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "AQUA - Beachfront Luxury Apartments",
+  title: "AQUA",
   description: "Discover luxury beachfront apartments at AQUA, El Pueblito Beach, Puerto Plata. Enjoy oceanfront views, modern amenities, and direct beach access.",
   keywords: "beachfront apartments, luxury apartments, Puerto Plata, El Pueblito Beach, vacation rentals, oceanfront property, Dominican Republic",
   authors: [{ name: "AQUA Apartments" }],
@@ -32,13 +33,13 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "AQUA - Beachfront Luxury Apartments",
+    title: "AQUA",
     description: "Discover luxury beachfront apartments at AQUA, El Pueblito Beach, Puerto Plata. Enjoy oceanfront views, modern amenities, and direct beach access.",
     url: 'https://aquapuertoplata.com',
-    siteName: 'AQUA Apartments',
+    siteName: 'AQUA',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/logo.ico',
         width: 1200,
         height: 630,
         alt: 'AQUA Beachfront Luxury Apartments',
@@ -49,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "AQUA - Beachfront Luxury Apartments",
+    title: "AQUA",
     description: "Discover luxury beachfront apartments at AQUA, El Pueblito Beach, Puerto Plata.",
-    images: ['/images/twitter-image.jpg'],
+    images: ['/logo.ico'],
     creator: '@aquaapartments',
   },
   robots: {
@@ -67,13 +68,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/logo.ico', type: 'image/x-icon' }
+      { url: '/favicon.ico', type: 'image/x-icon' }
     ],
     shortcut: [
-      { url: '/logo.ico', type: 'image/x-icon' }
+      { url: '/favicon.ico', type: 'image/x-icon' }
     ],
     apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/header-logo.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   other: {
@@ -89,21 +90,40 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/logo.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="/logo.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/header-logo.png" sizes="180x180" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <style>
           {`
-            /* Hide Next.js badge */
+            /* Hide Next.js badge and dev tools */
             [data-nextjs-dialog-overlay],
             [data-nextjs-dialog],
             [data-nextjs-toast],
-            [data-nextjs-toast-errors] {
+            [data-nextjs-toast-errors],
+            [data-nextjs-toast-wrapper],
+            [data-next-badge-root],
+            [data-next-badge],
+            [data-nextjs-dev-tools-button],
+            [data-nextjs-toast="true"],
+            [data-nextjs-function_calls],
+            .nextjs-toast,
+            .dev-tools-indicator-menu,
+            .dev-tools-indicator-inner,
+            .dev-tools-indicator-item,
+            .dev-tools-indicator-footer {
               display: none !important;
+              visibility: hidden !important;
+              opacity: 0 !important;
+              pointer-events: none !important;
+              z-index: -9999 !important;
+              width: 0 !important;
+              height: 0 !important;
+              position: absolute !important;
+              overflow: hidden !important;
             }
           `}
         </style>
@@ -114,7 +134,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LodgingBusiness",
-              "name": "AQUA Beachfront Luxury Apartments",
+              "name": "AQUA",
               "description": "Discover luxury beachfront apartments at AQUA, El Pueblito Beach, Puerto Plata. Enjoy oceanfront views, modern amenities, and direct beach access.",
               "url": "https://aquapuertoplata.com",
               "telephone": "+1-809-123-4567",
@@ -132,7 +152,7 @@ export default function RootLayout({
                 "longitude": "-70.6884"
               },
               "priceRange": "$$$",
-              "image": "https://aquapuertoplata.com/images/og-image.jpg",
+              "image": "https://aquapuertoplata.com/header-logo.png",
               "amenityFeature": [
                 {
                   "@type": "LocationFeatureSpecification",
