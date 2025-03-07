@@ -3,13 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "dev:4000": "PORT=4000 next dev --turbopack",
+    "dev": "PORT=3001 next dev --turbopack",
+    "dev:3001": "PORT=3001 next dev --turbopack",
     "build": "next build",
-    "start": "next start -p ${PORT:-3000}",
-    "lint": "next lint",
-    "gcp-build": "next build",
-    "deploy:gcloud": "gcloud builds submit --config cloudbuild.yaml"
+    "start": "next start -p ${PORT:-3001}",
+    "lint": "next lint"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.20.6",

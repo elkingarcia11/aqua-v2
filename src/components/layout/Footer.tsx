@@ -9,10 +9,10 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-white" id="contact">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-2">
         <div className="flex flex-col items-center justify-center">
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold mb-4 text-center">{t('footer.quickLinks')}</h3>
+          <div className="mb-0.5">
+            <h3 className="text-lg font-semibold mb-0.5 text-center">{t('footer.quickLinks')}</h3>
             <ul className="flex flex-wrap justify-center gap-6">
               <li>
                 <Link href="#properties" className="text-gray-400 hover:text-white transition-colors">
@@ -56,7 +56,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-6 pt-8 text-center text-gray-400">
+        <div className="border-t border-gray-800 mt-0.5 pt-0.5 pb-0.5 text-center text-gray-400">
           <p>
             &copy; {currentYear} AQUA. {t('footer.rights')}
           </p>

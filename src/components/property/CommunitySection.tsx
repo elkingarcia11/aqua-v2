@@ -79,9 +79,9 @@ export default function CommunitySection() {
         </div>
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="p-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('community.location')}</h3>
-            <p className="text-gray-600 mb-6">{t('community.locationDescription')}</p>
+          <div className="p-3 pb-1">
+            <h3 className="text-2xl font-bold text-gray-900 mb-1">{t('community.location')}</h3>
+            <p className="text-gray-600 mb-2">{t('community.locationDescription')}</p>
           </div>
           <div className="h-96 relative">
             {isLoaded ? (
