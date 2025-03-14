@@ -3,17 +3,34 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { communityInfo } from '@/data/community';
-import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
 
 export default function CommunitySection() {
   const { t, i18n } = useTranslation();
   
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-  });
+  // Community location coordinates
+  const communityLocation = {
+    lat: 19.773993872098327,
+    lng: -70.65216997523102
+  };
 
-  // Updated to use the exact coordinates from the provided URL
-  const communityLocation = { lat: 19.773993872098327, lng: -70.65216997523102 };
+  // API key from environment variables
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  
+  // Format the location query for the embed URL
+  const locationQuery = encodeURIComponent('AQUA EL PUEBLITO PUERTO PLATA RD');
+  
+  // Safely get description based on language
+  const getDescription = () => {
+    if (!communityInfo.description) return '';
+    return communityInfo.description[i18n.language as keyof typeof communityInfo.description] || 
+           communityInfo.description.en || '';
+  };
+  
+  // Safely get name based on language
+  const getName = (item: any) => {
+    if (!item || !item.name) return '';
+    return item.name[i18n.language as keyof typeof item.name] || item.name.en || '';
+  };
   
   return (
     <section id="community" className="py-20 bg-gray-50">
@@ -21,8 +38,7 @@ export default function CommunitySection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('community.title')}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {communityInfo.description[i18n.language as keyof typeof communityInfo.description] ||
-              communityInfo.description.en}
+            {getDescription()}
           </p>
         </div>
 
@@ -30,7 +46,7 @@ export default function CommunitySection() {
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('community.amenities')}</h3>
             <div className="space-y-4">
-              {communityInfo.amenities.map((amenity, index) => (
+              {communityInfo.amenities && communityInfo.amenities.map((amenity, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -39,9 +55,9 @@ export default function CommunitySection() {
                   viewport={{ once: true }}
                   className="flex items-center p-4 bg-white rounded-lg shadow-md"
                 >
-                  <span className="material-icons text-blue-600 mr-3">{amenity.icon}</span>
+                  <span className="material-icons text-blue-600 mr-3">{amenity.icon || ''}</span>
                   <span className="font-medium text-gray-800">
-                    {amenity.name[i18n.language as keyof typeof amenity.name] || amenity.name.en}
+                    {getName(amenity)}
                   </span>
                 </motion.div>
               ))}
@@ -51,7 +67,7 @@ export default function CommunitySection() {
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('community.nearbyAttractions')}</h3>
             <div className="space-y-4">
-              {communityInfo.nearbyAttractions.map((attraction, index) => (
+              {communityInfo.nearbyAttractions && communityInfo.nearbyAttractions.map((attraction, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -60,16 +76,20 @@ export default function CommunitySection() {
                   viewport={{ once: true }}
                   className="flex items-center p-4 bg-white rounded-lg shadow-md"
                 >
-                  <span className="material-icons text-blue-600 mr-3">{attraction.icon}</span>
+                  <span className="material-icons text-blue-600 mr-3">{attraction.icon || ''}</span>
                   <div>
                     <span className="font-medium text-gray-800">
-                      {attraction.name[i18n.language as keyof typeof attraction.name] || attraction.name.en}
+                      {getName(attraction)}
                     </span>
                     <p className="text-sm text-gray-500">
-                      {attraction.distance < 1000
-                        ? `${attraction.distance}m`
-                        : `${(attraction.distance / 1000).toFixed(1)}km`}{' '}
-                      {t('community.away')}
+                      {attraction.distance !== undefined ? (
+                        <>
+                          {attraction.distance < 1000
+                            ? `${attraction.distance}m`
+                            : `${(attraction.distance / 1000).toFixed(1)}km`}{' '}
+                          {t('community.away')}
+                        </>
+                      ) : ''}
                     </p>
                   </div>
                 </motion.div>
@@ -84,30 +104,25 @@ export default function CommunitySection() {
             <p className="text-gray-600 mb-2">{t('community.locationDescription')}</p>
           </div>
           <div className="h-96 relative">
-            {isLoaded ? (
-              <GoogleMap
-                mapContainerStyle={{ width: '100%', height: '100%' }}
-                center={communityLocation}
-                zoom={17}
-                options={{
-                  disableDefaultUI: false,
-                  zoomControl: true,
-                  scrollwheel: false,
-                  mapTypeControl: true,
-                  fullscreenControl: true,
-                }}
-              >
-                <MarkerF 
-                  position={communityLocation} 
-                  title="AQUA EL PUEBLITO PUERTO PLATA RD"
-                />
-              </GoogleMap>
+            {apiKey ? (
+              <iframe
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${locationQuery}&center=${communityLocation.lat},${communityLocation.lng}&zoom=17`}
+                title="Google Maps - AQUA EL PUEBLITO PUERTO PLATA RD"
+                aria-label="Map showing location of AQUA EL PUEBLITO PUERTO PLATA RD"
+              ></iframe>
             ) : (
-              <div className="h-full w-full bg-gray-200 flex items-center justify-center">
-                <p className="text-gray-500">{t('community.loadingMap')}</p>
+              <div className="h-full w-full flex items-center justify-center bg-gray-100">
+                <p className="text-red-500">Google Maps API key is missing</p>
               </div>
             )}
           </div>
+          
           <div className="p-6 bg-gray-50">
             <div className="flex flex-col md:flex-row md:items-center justify-between">
               <div className="mb-4 md:mb-0">
@@ -119,6 +134,7 @@ export default function CommunitySection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-center transition-colors inline-flex items-center"
+                aria-label="Get directions to AQUA EL PUEBLITO PUERTO PLATA RD"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -126,6 +142,7 @@ export default function CommunitySection() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
