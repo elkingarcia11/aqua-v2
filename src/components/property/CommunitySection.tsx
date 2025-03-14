@@ -4,6 +4,19 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { communityInfo } from '@/data/community';
 
+// Define interfaces for our data structures
+interface MultilingualText {
+  en: string;
+  es?: string;
+  [key: string]: string | undefined;
+}
+
+interface NamedItem {
+  name: MultilingualText;
+  icon?: string;
+  distance?: number;
+}
+
 export default function CommunitySection() {
   const { t, i18n } = useTranslation();
   
@@ -27,7 +40,7 @@ export default function CommunitySection() {
   };
   
   // Safely get name based on language
-  const getName = (item: any) => {
+  const getName = (item: NamedItem | undefined) => {
     if (!item || !item.name) return '';
     return item.name[i18n.language as keyof typeof item.name] || item.name.en || '';
   };
